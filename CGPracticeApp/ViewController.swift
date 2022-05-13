@@ -42,7 +42,6 @@ class ViewController: UIViewController {
     
     var flag: Int = 2
     
-    
     @objc func handlePangesture(_ sender: UIPanGestureRecognizer) {
         var newPoint = customView.bounds.origin
         newPoint.y -= sender.translation(in: customView).y

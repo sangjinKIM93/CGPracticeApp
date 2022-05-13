@@ -8,22 +8,7 @@
 import UIKit
 
 class CustomView: UIView {
-    
-//    let imageList: [UIImage?] = [
-//        UIImage(named: "sample_images_1"),
-//        UIImage(named: "sample_images_2"),
-//        UIImage(named: "sample_images_3"),
-//        UIImage(named: "sample_images_4"),
-//        UIImage(named: "sample_images_5"),
-//        UIImage(named: "sample_images_6"),
-//        UIImage(named: "sample_images_7"),
-//        UIImage(named: "sample_images_8"),
-//        UIImage(named: "sample_images_9"),
-//        UIImage(named: "sample_images_10"),
-//        UIImage(named: "sample_images_11"),
-//        UIImage(named: "sample_images_12")
-//    ]
-    
+
     override class var layerClass: AnyClass {
         return CAScrollLayer.self
     }
