@@ -9,18 +9,14 @@ import UIKit
 
 class CustomView: UIView {
 
-    var layerArray: [CALayer] = []
-    
     override class var layerClass: AnyClass {
         return CAScrollLayer.self
     }
     
     override func draw(_ rect: CGRect) {
         
-        for index in 1...5 {
-            let layer = CALayer()
-            layerArray.append(layer)
-            addImageLayer(layer: layer, rect: rect, number: index)
+        for index in 1...4 {
+            addImageLayerByNumber(number: index, rect: rect)
         }
 
         // 50개 이미지 전부 로드
@@ -34,34 +30,27 @@ class CustomView: UIView {
 //        }
     }
     
-    private func addImageLayer(layer: CALayer, rect: CGRect, number: Int) {
+    private func addImageLayer(image: UIImage, rect: CGRect, name: String) {
+        if let image = image.cgImage {
+            let layer = CALayer()
+            layer.frame = rect
+            layer.name = name
+            layer.contents = image
+            layer.contentsGravity = .resizeAspectFill
+            layer.cornerRadius = 10
+            layer.borderWidth = 5
+            layer.borderColor = UIColor.yellow.cgColor
+            layer.masksToBounds = true
+            self.layer.addSublayer(layer)
+        }
+    }
+    
+    func addImageLayerByNumber(number: Int, rect: CGRect) {
         let y = Int(rect.height) / 4 * (number - 1)
         let imageRect = CGRect(x: 0, y: CGFloat(y), width: rect.width, height: rect.height / 4)
         
-        layer.frame = imageRect
-        layer.name = "\(number)"
-        layer.contents = UIImage(named: "sample_images_\(number)")?.cgImage
-        layer.contentsGravity = .resizeAspectFill
-        layer.cornerRadius = 10
-        layer.borderWidth = 5
-        layer.borderColor = UIColor.yellow.cgColor
-        layer.masksToBounds = true
-        self.layer.addSublayer(layer)
-    }
-    
-    func addImageLayerByNumber(number: Int, rect: CGRect, isTop: Bool) {
-        if isTop {
-            if let layer = layerArray.popLast() {
-                addImageLayer(layer: layer, rect: rect, number: number)
-                layerArray.insert(layer, at: 0)
-            }
-        } else {
-            guard !layerArray.isEmpty else {
-                return
-            }
-            let layer = layerArray.removeFirst()
-            addImageLayer(layer: layer, rect: rect, number: number)
-            layerArray.append(layer)
+        if let image = UIImage(named: "sample_images_\(number)") {
+            addImageLayer(image: image, rect: imageRect, name: "\(number)")
         }
     }
     

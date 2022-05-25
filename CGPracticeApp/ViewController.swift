@@ -47,7 +47,6 @@ class ViewController: UIViewController {
         newPoint.y -= sender.translation(in: customView).y
         sender.setTranslation(CGPoint.zero, in: customView)
         scrollingViewLayer.scroll(to: newPoint)
-//        print(newPoint)
         
         guard newPoint.y > 0 else { return }
 
@@ -62,13 +61,13 @@ class ViewController: UIViewController {
                 // 아래로 스크롤(down)
                 print("down")
                 print(newFlag)
-                customView.addImageLayerByNumber(number: newFlag + 5, rect: self.view.frame, isTop: true)
+                customView.addImageLayerByNumber(number: newFlag + 5, rect: self.view.frame)
                 customView.removeImageLayerByNumber(number: newFlag)
             } else {
                 // 위로 스크롤(up)
                 print("up")
                 print(newFlag)
-                customView.addImageLayerByNumber(number: newFlag + 1, rect: self.view.frame, isTop: false)
+                customView.addImageLayerByNumber(number: newFlag + 1, rect: self.view.frame)
                 customView.removeImageLayerByNumber(number: newFlag + 6)
             }
         }
