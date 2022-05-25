@@ -63,13 +63,11 @@ class ViewController: UIViewController {
                 print("down")
                 print(newFlag)
                 customView.addImageLayerByNumber(number: newFlag + 5, rect: self.view.frame, isTop: true)
-                customView.removeImageLayerByNumber(number: newFlag)
             } else {
                 // 위로 스크롤(up)
                 print("up")
                 print(newFlag)
                 customView.addImageLayerByNumber(number: newFlag + 1, rect: self.view.frame, isTop: false)
-                customView.removeImageLayerByNumber(number: newFlag + 6)
             }
         }
     }
